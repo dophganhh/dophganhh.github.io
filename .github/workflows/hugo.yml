@@ -1,0 +1,30 @@
+name: Deploy GitHub Pages
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    build-and-deploy:
+        runs-on: ubuntu-latest
+
+        permissions:
+            contents: read
+            pages: write
+            id-token: write
+
+        steps:
+            # 1. Check out the Repo B
+            - name: Checkout Repository
+              uses: actions/checkout@v4
+
+            # 2. Setup GitHub Pages
+            - name: Setup Pages
+              id: pages
+              uses: actions/configure-pages@v5
+
+            # 3. Deploy to GitHub Pages
+            - name: Deploy to GitHub Pages
+              id: deployment
+              uses: actions/deploy-pages@v4
